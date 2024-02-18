@@ -19,3 +19,16 @@
 
 # Go workspace file
 go.work
+
+.env
+
+# Terraform
+*.tfvars
+.terraform
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# SA Key
+key.json
