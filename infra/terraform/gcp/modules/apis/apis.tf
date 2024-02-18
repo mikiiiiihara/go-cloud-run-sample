@@ -8,6 +8,7 @@ module "project_services" {
     "cloudresourcemanager.googleapis.com",
     "artifactregistry.googleapis.com",
     "cloudbuild.googleapis.com",
+    "run.googleapis.com",
     # serviceusageは手動で有効化する必要がある
     # "serviceusage.googleapis.com"
   ]
