@@ -6,7 +6,8 @@ module "project_services" {
   enable_apis                 = var.enable_apis
   activate_apis = [
     "cloudresourcemanager.googleapis.com",
-    "artifactregistry.googleapis.com"
+    "artifactregistry.googleapis.com",
+    "cloudbuild.googleapis.com",
     # serviceusageは手動で有効化する必要がある
     # "serviceusage.googleapis.com"
   ]
