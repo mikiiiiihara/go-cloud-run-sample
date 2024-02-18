@@ -22,3 +22,15 @@ variable "enable_apis" {
   type    = bool
   default = true
 }
+
+variable "cloud_run_min_scale" {
+  description = "min scale of Cloud Run Instance"
+  type    = number
+  default = 0
+}
+
+variable "cloud_run_max_scale" {
+  description = "max scale of Cloud Run Instance"
+  type    = number
+  default = 100
+}

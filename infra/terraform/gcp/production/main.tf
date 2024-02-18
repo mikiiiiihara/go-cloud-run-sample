@@ -10,33 +10,37 @@ module "project_services" {
   enable_apis = var.enable_apis
 }
 
-# resource "google_cloud_run_service" "cloud_run" {
-#   name     = "example-service"
-#   location = "asia-northeast1" # コンテナイメージと同じリージョンを指定
-#   project  = var.project_id
+resource "google_cloud_run_service" "cloud_run" {
+  name     = "api-production-jpe"
+  location = "asia-northeast1" # コンテナイメージと同じリージョンを指定
+  project  = var.project_id
 
-#   template {
-#     spec {
-#       containers {
-#         image = "asia.gcr.io/cloud-run-terraform-sample/api-production-jpe"
-#       }
-#     }
-#     metadata {
-#     annotations = {
-#             "autoscaling.knative.dev/minScale" = 0,
-#             "autoscaling.knative.dev/maxScale" = 10
-#         }
-#     }
-#   }
+  template {
+    spec {
+      containers {
+        image = "asia.gcr.io/${var.project_id}/api-production-jpe"
+      }
+    }
+    metadata {
+    annotations = {
+            "autoscaling.knative.dev/minScale" = var.cloud_run_min_scale,
+            "autoscaling.knative.dev/maxScale" = var.cloud_run_max_scale,
+            "run.googleapis.com/client-name"       = "gcloud",
+            "run.googleapis.com/client-version"    = "464.0.0",
+            "run.googleapis.com/startup-cpu-boost" = true
+        }
+    }
+  }
 
-#   traffic {
-#     percent         = 100
-#     latest_revision = true
-#   }
+  traffic {
+    percent         = 100
+    latest_revision = true
+  }
 
-#   autogenerate_revision_name = true
+  autogenerate_revision_name = true
+  timeouts {}
   
-# }
+}
 
 
 resource "google_artifact_registry_repository" "my_repository" {
