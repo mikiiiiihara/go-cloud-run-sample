@@ -40,6 +40,6 @@ jobs:
         run: |
           gcloud run deploy ${{ env.IMAGE_NAME }} \
             --image asia.gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }} \
-            --region asia-southeast1 \
+            --region asia-northeast1 \
             --platform managed \
             --allow-unauthenticated
